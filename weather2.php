@@ -15,18 +15,35 @@
     
   </head>
   <body>
-    <div class="container">
-      <div id="error"></div>
-      <div id="city"></div>
-      <div id="temperature"></div>
-      <div id="results">
-        <div id="condition"></div>
-        <div id="wind-speed"></div>
-      </div>
-      <div>
-        <input id="convert-button" type="button" class="btn btn-lg btn-primary" value="Display: °F / °C" />
-      </div>
-    </div>
+  <div class="container">
+  
+  <div class="page-header">
+  <div class="row">
+  <div class="col-xs-6" id="city"></div>
+  <div class="col-xs-6" id="date"></div>
+  </div>
+  <div class="row">
+  <div class="col-xs-6" id="temperature"></div>
+  <div class="col-xs-6" id="time"></div>
+  </div>
+  
+  <div id="condition"></div>
+  
+  
+  </div>
+  </div>
+  
+  
+  <div class ="container">
+  <div class= "well well-lg"> 
+  
+  
+  <br>
+  <div id="error"></div>
+  
+      
+ 
+  </div>
     <footer class="footer">
       <div class="container-fluid text-center">
         <div class="footer-text text-muted row">Copyright &copy; <script>document.write(new Date().getFullYear());</script>. All rights reserved. Developed for the Dave and Dena Corporation </a></div>
@@ -34,11 +51,22 @@
       
         </div>
       </div>
+	  </div>
+	  
+	  
+  
     </footer>
 	
 	
 	<script>
 	$(document).ready(function () {
+	
+	var d = new Date();
+	var dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+	$('#date').text(d.toDateString());
+	$('#time').text(d.toLocaleTimeString());
+
 
   // OpenWeatherMap only works over HTTP. Check if using HTTPS
   // and present an error with a link to a HTTP version of the page.
@@ -61,7 +89,7 @@
 function getLocation() {
   // Using the GEO IP API due to HTTP restrictions from OpenWeatherMap
   $.get('http://ip-api.com/json', function (loc) {
-      $('#city').text(loc.city + ', ' + loc.region + ', ' + loc.country);
+      $('#city').text(loc.city + ', ' + loc.region);
       getWeather(loc.lat, loc.lon, loc.countryCode);
     })
     .fail(function (err) {
@@ -102,8 +130,8 @@ function getWeather(lat, lon, countryCode) {
           'https://tylermoeller.github.io/local-weather-app/assets/img/rain.jpg',
           'https://tylermoeller.github.io/local-weather-app/assets/img/snow.jpg',
           'https://tylermoeller.github.io/local-weather-app/assets/img/fog.jpg',
-          'https://tylermoeller.github.io/local-weather-app/assets/img/clear.jpg',
-          'https://tylermoeller.github.io/local-weather-app/assets/img/cloudy.jpg',
+          'clear.jpg',
+          'cloudy.jpg',
         ];
 
       backgroundId.push(id);
@@ -155,7 +183,11 @@ $('#convert-button').click(function () {
   }
 
   this.blur(); // remove focus from the button
+  
 });
+
+
+
 </script>
 	
     
