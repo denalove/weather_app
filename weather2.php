@@ -59,8 +59,12 @@
 	
 	
 	<script>
+	
+	
+	function updateClock() {
 	$(document).ready(function () {
 	
+
 	var d = new Date();
 	var dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -184,8 +188,12 @@ $('#convert-button').click(function () {
 
   this.blur(); // remove focus from the button
   
+  
+  
 });
-
+	};
+	updateClock();
+	var myvar = setInterval(function(){ updateClock() }, 60000);
 
 
 </script>
